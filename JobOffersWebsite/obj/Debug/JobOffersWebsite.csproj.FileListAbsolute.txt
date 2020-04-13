@@ -67,3 +67,7 @@ D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobO
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.csproj.CopyComplete
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.dll
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.pdb
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\EntityFramework.dll
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\EntityFramework.SqlServer.dll
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\EntityFramework.xml
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\EntityFramework.SqlServer.xml
