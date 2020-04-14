@@ -18,6 +18,6 @@ namespace JobOffersWebsite.Models
         [Display(Name = "Category Description")]
         public string CategoryDescription { get; set; }
 
-        public ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

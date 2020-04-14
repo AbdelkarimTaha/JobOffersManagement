@@ -73,15 +73,14 @@ namespace JobOffersWebsite.Controllers
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Job job = db.Jobs.Find(id);
+
             if (job == null)
-            {
                 return HttpNotFound();
-            }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
+
+            ViewBag.CategoryId  = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
 
@@ -90,9 +89,16 @@ namespace JobOffersWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobContent,JobImage,CategoryId")] Job job)
+        public ActionResult Edit(Job job, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (upload != null)
+            {
+                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                upload.SaveAs(path);
+                job.JobImage = upload.FileName;
+            }
+
+            //if (ModelState.IsValid)
             {
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
