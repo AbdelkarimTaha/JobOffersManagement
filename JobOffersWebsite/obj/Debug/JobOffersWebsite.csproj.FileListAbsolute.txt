@@ -97,3 +97,6 @@ D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\System.Web
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\Microsoft.Owin.Security.Google.dll
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\bin\Microsoft.Owin.Security.Google.xml
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.csprojAssemblyReference.cache
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.InitialCreate.resources
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.csproj.GenerateResource.cache
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddColumnUserType.resources
