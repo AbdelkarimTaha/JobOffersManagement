@@ -30,5 +30,9 @@ namespace JobOffersWebsite.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<JobOffersWebsite.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<JobOffersWebsite.Models.Job> Jobs { get; set; }
     }
 }

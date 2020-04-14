@@ -100,3 +100,5 @@ D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobO
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.InitialCreate.resources
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.csproj.GenerateResource.cache
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddColumnUserType.resources
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddCategoryTable.resources
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddJobTable.resources
