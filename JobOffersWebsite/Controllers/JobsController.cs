@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -48,9 +49,16 @@ namespace JobOffersWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,JobTitle,JobContent,JobImage,CategoryId")] Job job)
+        public ActionResult Create(Job job, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (upload != null)
+            {
+                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                upload.SaveAs(path);
+                job.JobImage = upload.FileName;
+            }
+
+            //if (ModelState.IsValid)
             {
                 db.Jobs.Add(job);
                 db.SaveChanges();

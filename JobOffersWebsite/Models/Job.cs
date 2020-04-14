@@ -26,6 +26,7 @@ namespace JobOffersWebsite.Models
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public Category category { get; set; }
     }
 }
