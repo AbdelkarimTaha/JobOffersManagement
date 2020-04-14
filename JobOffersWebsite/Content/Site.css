@@ -9,6 +9,7 @@
 }
 
 .myfooter {
+    margin-top:100px;
     background-color: cornflowerblue;
     display: block;
     text-align:justify;
@@ -33,6 +34,8 @@
 
 
 
-.start {
-    margin-top: 70px;
+body {
+    padding-top: 100px;
 }
+
+  

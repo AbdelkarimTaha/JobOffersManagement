@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security;
 using Owin;
-using WebApplication1.Models;
+using JobOffersWebsite.Models;
 
 namespace WebApplication1
 {
