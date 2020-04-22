@@ -80,7 +80,7 @@ namespace JobOffersWebsite.Controllers
             if (job == null)
                 return HttpNotFound();
 
-            ViewBag.CategoryId  = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
 
@@ -91,22 +91,27 @@ namespace JobOffersWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Job job, HttpPostedFileBase upload)
         {
-            if (upload != null)
-            {
-                string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
-                upload.SaveAs(path);
-                job.JobImage = upload.FileName;
-            }
-
             //if (ModelState.IsValid)
             {
+                string OldPath = Path.Combine(Server.MapPath("~/Images"), job.JobImage);
+
+                if (upload != null)
+                {
+                    System.IO.File.Delete(OldPath);
+                    string path = Path.Combine(Server.MapPath("~/Images"), upload.FileName);
+                    upload.SaveAs(path);
+                    job.JobImage = upload.FileName;
+                }
+
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
+        
 
         // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)
