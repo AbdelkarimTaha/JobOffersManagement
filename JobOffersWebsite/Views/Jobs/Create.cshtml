@@ -38,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="upload" id="Image" />
+                <input type="file" name="upload" id="InputImage" />
                 @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -63,15 +63,39 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+
 @section Scripts
 {
     <script>
         $(function () {
             $("#Save").click(function () {
-                if ($("#Image").val() == "") {
+
+                //if image not found
+                if ($("#InputImage").val() == "") {
                     $("#ErrorDiv").fadeIn();
-                    $("#ErrorSpan").append("Please enter job image.")
+                    $("#ErrorSpan").append("Please enter job image." + "<br />")
                     return false;
+                }
+
+                if ($("#InputImage").val() != "") {
+
+                    //if extention image not vaild
+                    var ImageName = document.getElementById("InputImage").value;
+                    var ImageExtension = ImageName.substr(ImageName.lastIndexOf('.') + 1);
+                    var ValidExtensions = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(ImageExtension, ValidExtensions) == -1) {
+                        $("#ErrorDiv").fadeIn();
+                        $("#ErrorSpan").append("Please enter a vaild image extention." + "<br />")
+                        return false;
+                    }
+
+                    //if image > 2 MB
+                    var ImageSize = document.getElementById("InputImage").files[0].size / 1024 / 1024;
+                    if (ImageSize > 2) {
+                        $("#ErrorDiv").fadeIn();
+                        $("#ErrorSpan").append("Please enter a vaild image size 2MB Maximam." + "<br />")
+                        return false;
+                    }
                 }
             });
         });
