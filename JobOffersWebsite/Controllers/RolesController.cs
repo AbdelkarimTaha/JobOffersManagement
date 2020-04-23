@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace JobOffersWebsite.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class RolesController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
