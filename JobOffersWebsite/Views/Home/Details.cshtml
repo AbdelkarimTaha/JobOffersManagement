@@ -1,0 +1,23 @@
+﻿@model JobOffersWebsite.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>@Model.JobTitle</h2>
+
+<img src="~/Images/@Model.JobImage" style="float:right; width:100px;height:100px" />
+
+<p>
+    <hr />
+    @Html.ActionLink("Apply for job", "Apply", new { id = Model.Id }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-primary" })
+</p>
+
+
+<div>
+    <h3>About the Job</h3>
+    <p>@Model.JobContent</p>
+
+</div>
