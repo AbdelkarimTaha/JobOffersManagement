@@ -10,7 +10,7 @@ using JobOffersWebsite.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize(Roles ="Admins")]
+    [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
