@@ -17,9 +17,11 @@ namespace WebApplication1.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,7 +141,8 @@ namespace WebApplication1.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.UserType = new SelectList(new[] { "Post a free job", "searching for jobs?" });
+            ViewBag.UserType = new SelectList(db.Roles.Where(n => !n.Name.Contains("Administrators")).ToList()
+                                              , "Name", "Name");
             return View();
         }
 
@@ -152,18 +155,21 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.UserType = new SelectList(new[] { "Post a free job", "searching for jobs?" });
+                ViewBag.UserType = new SelectList(db.Roles.Where(n => !n.Name.Contains("Administrators")).ToList()
+                                                  , "Name", "Name");
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    await UserManager.AddToRoleAsync(user.Id, model.UserType);
 
                     return RedirectToAction("Index", "Home");
                 }
