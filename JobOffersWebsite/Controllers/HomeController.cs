@@ -1,4 +1,5 @@
 ﻿using JobOffersWebsite.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,6 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -31,24 +31,35 @@ namespace WebApplication1.Controllers
             return View(job);
         }
 
+        [Authorize]
         public ActionResult Apply()
         {
 
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Apply(string Message)
         {
-            ViewBag.Message = "Your application description page.";
+            var UserId = User.Identity.GetUserId();
+            var JobId = (int)Session["JobId"];
 
-            return View();
+            var check = db.ApplyForJobs.Where(a => a.UserId == UserId && a.JobId == JobId).ToList();
+
+            if (check.Count == 0)
+            {
+                ApplyForJob job = new ApplyForJob();
+                job.Message = Message;
+                job.ApplyDate = DateTime.Now;
+                job.UserId = UserId;
+                job.JobId = JobId;
+
+                db.ApplyForJobs.Add(job);
+                db.SaveChanges();
+            }         
+
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
