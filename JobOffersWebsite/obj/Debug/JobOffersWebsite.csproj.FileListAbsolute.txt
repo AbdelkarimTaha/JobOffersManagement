@@ -102,3 +102,4 @@ D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobO
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddCategoryTable.resources
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddJobTable.resources
 D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.Migrations.AddApplyForJobClass.resources
+D:\Projects\JobOffersManagement\JobOffersWebsite\JobOffersWebsite\obj\Debug\JobOffersWebsite.csprojAssemblyReference.cache

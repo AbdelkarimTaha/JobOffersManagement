@@ -25,8 +25,16 @@ namespace WebApplication1.Controllers
 
             if (job == null)
                 return HttpNotFound();
- 
+
+            Session["JobId"] = JobId;
+
             return View(job);
+        }
+
+        public ActionResult Apply()
+        {
+
+            return View();
         }
 
         public ActionResult About()
