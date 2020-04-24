@@ -70,5 +70,15 @@ namespace WebApplication1.Controllers
             return View(jobs);
         }
 
+        [Authorize]
+        public ActionResult DetailsOfJob(int id)
+        {
+            var job = db.ApplyForJobs.Find(id);
+
+            if (job == null)
+                return HttpNotFound();
+
+            return View(job);
+        }
     }
 }
