@@ -34,6 +34,9 @@ namespace JobOffersWebsite.Models
         public System.Data.Entity.DbSet<JobOffersWebsite.Models.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<JobOffersWebsite.Models.Job> Jobs { get; set; }
-        
+
+        public System.Data.Entity.DbSet<JobOffersWebsite.Models.ApplyForJob> ApplyForJobs { get; set; }
+
+       // public System.Data.Entity.DbSet<JobOffersWebsite.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

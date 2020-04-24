@@ -188,8 +188,13 @@
     <Compile Include="Migrations\202004140625150_AddJobTable.designer.cs">
       <DependentUpon>202004140625150_AddJobTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004241306474_AddApplyForJobClass.cs" />
+    <Compile Include="Migrations\202004241306474_AddApplyForJobClass.designer.cs">
+      <DependentUpon>202004241306474_AddApplyForJobClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplyForJob.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
@@ -267,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004140625150_AddJobTable.resx">
       <DependentUpon>202004140625150_AddJobTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004241306474_AddApplyForJobClass.resx">
+      <DependentUpon>202004241306474_AddApplyForJobClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
