@@ -61,5 +61,14 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
+        public ActionResult GetJobsByUser()
+        {
+            var UserId = User.Identity.GetUserId();
+            var jobs = db.ApplyForJobs.Where(a => a.UserId == UserId).ToList();
+
+            return View(jobs);
+        }
+
     }
 }
