@@ -105,5 +105,30 @@ namespace WebApplication1.Controllers
             return View(job);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var job = db.ApplyForJobs.Find(id);
+
+            if (job == null)
+                return HttpNotFound();
+
+            return View(job);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(ApplyForJob job)
+        {
+            if (ModelState.IsValid)
+            {
+                var JobInDb = db.ApplyForJobs.Find(job.ID);
+
+                db.ApplyForJobs.Remove(JobInDb);
+                db.SaveChanges();
+
+                return RedirectToAction("GetJobsByUser");
+            }
+
+            return View();
+        }
     }
 }
