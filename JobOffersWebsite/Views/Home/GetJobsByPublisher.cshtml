@@ -1,0 +1,24 @@
+﻿@model IEnumerable<JobOffersWebsite.Models.JobsViewModel>
+
+@foreach (var gr in Model)
+{
+    <table class="table table-hover table-bordered">
+        <h3>@gr.JobTitle</h3>
+
+        <tr>
+            <th>User Name</th>
+            <th>Message</th>
+            <th>ApplyDate</th>
+        </tr>
+
+        @foreach (var item in gr.items)
+        {
+            <tr>
+                <td>@item.User.UserName</td>
+                <td>@item.Message</td>
+                <td>@item.ApplyDate</td>
+            </tr>
+
+        }
+    </table>
+}

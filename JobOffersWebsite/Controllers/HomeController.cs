@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-            var Categories = db.Categories.ToList(); 
+            var Categories = db.Categories.ToList();
 
             return View(Categories);
         }
@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
 
                 db.ApplyForJobs.Add(job);
                 db.SaveChanges();
-            }         
+            }
 
             return RedirectToAction("Index");
         }
@@ -129,6 +129,29 @@ namespace WebApplication1.Controllers
             }
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult GetJobsByPublisher()
+        {
+            var UserId = User.Identity.GetUserId();
+
+            var jobs = from apply in db.ApplyForJobs
+                       join job in db.Jobs
+                       on apply.JobId equals job.Id
+                       where job.User.Id == UserId
+                       select apply;
+
+            var group = from j in jobs
+                        group j by j.Job.JobTitle
+                        into gr
+                        select new JobsViewModel
+                        {
+                            JobTitle = gr.Key,
+                            items = gr
+                        };
+
+            return View(group.ToList());
         }
     }
 }
