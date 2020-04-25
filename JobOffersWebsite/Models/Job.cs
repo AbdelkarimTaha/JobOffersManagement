@@ -27,5 +27,9 @@ namespace JobOffersWebsite.Models
         public int CategoryId { get; set; }
 
         public virtual Category category { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }
