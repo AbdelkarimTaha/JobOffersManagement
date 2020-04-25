@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -80,5 +81,29 @@ namespace WebApplication1.Controllers
 
             return View(job);
         }
+
+        public ActionResult Edit(int id)
+        {
+            var job = db.ApplyForJobs.Find(id);
+
+            if (job == null)
+                return HttpNotFound();
+
+            return View(job);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ApplyForJob job)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("GetJobsByUser");
+            }
+
+            return View(job);
+        }
+
     }
 }
