@@ -153,5 +153,21 @@ namespace WebApplication1.Controllers
 
             return View(group.ToList());
         }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchName)
+        {
+            var SearchResult = db.Jobs.Where(j => j.JobTitle.Contains(searchName)
+                                         || j.JobContent.Contains(searchName)
+                                         || j.category.CategoryName.Contains(searchName)
+                                         || j.category.CategoryDescription.Contains(searchName)).ToList();
+
+            return View(SearchResult);
+        }
     }
 }
