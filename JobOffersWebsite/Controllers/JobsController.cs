@@ -54,15 +54,13 @@ namespace JobOffersWebsite.Controllers
                 job.JobImage = upload.FileName;
             }
 
-            {
-                job.UserId = User.Identity.GetUserId();
-                db.Jobs.Add(job);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            job.UserId = User.Identity.GetUserId();
+            db.Jobs.Add(job);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
-            return View(job);
+            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
+            //return View(job);
         }
 
         public ActionResult Edit(int? id)
