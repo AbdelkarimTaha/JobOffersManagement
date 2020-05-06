@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<JobOffersWebsite.Models.JobsViewModel>
 
+<h2>APPLICATIONS</h2>
+<hr/>
+<p>
+    @Html.ActionLink("Create New", "Create", "Jobs", null, new { @class = "btn btn-primary" })
+</p>
+
+
 @foreach (var gr in Model)
 {
     <table class="table table-hover table-bordered">
@@ -8,7 +15,7 @@
         <tr>
             <th>User Name</th>
             <th>Message</th>
-            <th>ApplyDate</th>
+            <th>Apply Date</th>
         </tr>
 
         @foreach (var item in gr.items)
@@ -18,7 +25,6 @@
                 <td>@item.Message</td>
                 <td>@item.ApplyDate</td>
             </tr>
-
         }
     </table>
 }

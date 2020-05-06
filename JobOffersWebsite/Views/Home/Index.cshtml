@@ -3,24 +3,28 @@
     ViewBag.Title = "Home Page";
 }
 <div>
-    <h3>Explore New Career Opportunities</h3>
+    <h3 class="alert alert-info">Explore New Career Opportunities</h3>
 </div>
 
 <div>
     @foreach (var category in Model)
     {
         <div >
-            @*<h2 class="panel panel-heading">@category.CategoryName</h2>*@
             @foreach (var job in category.Jobs)
             {
             <div class="col-md-12 thumbnail" style="padding:1px 15px">
 
-                <img src="~/Images/@job.JobImage" style="float:right; width:90px;height:50px; padding-top:10px;" />
-                
-                <h3>@Html.ActionLink(@job.JobTitle, "Details", new { JobId = job.Id }, null)</h3>
-                
-                <p style="width:75%">@job.JobContent</p>
-            </div>
+                <img src="~/Images/@job.JobImage" style="float:right; width:100px;height:100px; padding-top:10px;" />
+
+                <h3>
+                    @Html.ActionLink(@job.JobTitle, "Details", new { JobId = job.Id }, null)
+                    <span style="font-size:small; background-color:#EEE">@job.category.CategoryName</span>  
+                </h3>
+
+                <p style="width:75%">
+                    @Html.Raw(HttpUtility.HtmlDecode(job.JobContent.ToString()))
+                </p>
+             </div>
             }
         </div>
     }

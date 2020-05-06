@@ -5,17 +5,16 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<div class="alert alert-danger">
+    <span><b>Are you sure you want to discard your apply for this job?</b></span>
+</div>
 <div>
-    <h4>Job</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="font-size:large">
         <dt>
             @Html.DisplayNameFor(model => model.Job.JobTitle)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Job.JobTitle)
         </dd>
@@ -23,7 +22,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Message)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Message)
         </dd>
@@ -31,11 +29,9 @@
         <dt>
             @Html.DisplayNameFor(model => model.ApplyDate)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ApplyDate)
         </dd>
-
     </dl>
 
     @using (Html.BeginForm())
@@ -43,17 +39,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input id="save" type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "GetJobsByUser")
+            <input id="save" type="submit" value="Delete" class="btn btn-primary" />
         </div>
     }
 </div>
-
-@section Scripts
-{
-    <script>
-        $("#save").click(function () {
-            alert("Are you sure you want to delete this?");
-        });
-    </script>
-}

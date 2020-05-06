@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace JobOffersWebsite.Controllers
 {
+    [Authorize]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -102,7 +103,7 @@ namespace JobOffersWebsite.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
-        
+
 
         public ActionResult Delete(int? id)
         {

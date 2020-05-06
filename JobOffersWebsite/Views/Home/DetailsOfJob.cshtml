@@ -5,30 +5,31 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>DetailsOfJob</h2>
+<h2>Details of this application.</h2>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Job.JobTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApplyDate)
-            </th>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.Job.JobTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Message)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.ApplyDate)
-            </td>
-        </tr>
-    </table>
- 
+<dl class="dl-horizontal" style="font-size:large">
+    <hr />
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Job.JobTitle)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Job.JobTitle)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Message)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Message)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.ApplyDate)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.ApplyDate)
+    </dd>
+</dl>
+
+

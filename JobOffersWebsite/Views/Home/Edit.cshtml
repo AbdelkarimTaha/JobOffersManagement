@@ -5,51 +5,39 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<div>
+    <h2>Edit Answer</h2>
+    <hr />
+</div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ID)
-    @Html.HiddenFor(model => model.UserId)
-    @Html.HiddenFor(model => model.JobId)
-    @Html.HiddenFor(model => model.ApplyDate)
+    <div class="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.JobId)
+        @Html.HiddenFor(model => model.ApplyDate)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.Job.JobTitle
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.JobId) : @Model.Job.JobTitle</h4>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.User.UserName
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.User.UserName) : @Model.User.UserName </h4>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.Message)</h4>
+            @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
         </div>
     </div>
 
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
+            <input type="submit" value="Save" class="btn btn-primary" />
     </div>
-</div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "GetJobsByUser")
-</div>

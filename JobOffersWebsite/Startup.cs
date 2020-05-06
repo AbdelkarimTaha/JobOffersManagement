@@ -22,19 +22,19 @@ namespace WebApplication1
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-            if (!roleManager.RoleExists("Admins"))
+            if (!roleManager.RoleExists("Admin"))
             {
                 IdentityRole role = new IdentityRole();
-                role.Name = "Admins";
+                role.Name = "Admin";
                 roleManager.Create(role);
 
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "Abdelkarim";
-                user.Email = "Abdelkarim@gmail.com";
+                user.UserName = "Admin";
+                user.Email = "Admin@JobOffer.com";
 
-                var check = userManager.Create(user, "ADMIN@vidly.com123");
+                var check = userManager.Create(user, "Admin@JobOffer.com12345");
                 if (check.Succeeded)
-                    userManager.AddToRole(user.Id, "Admins");
+                    userManager.AddToRole(user.Id, "Admin");
             }
 
         }

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Search Result</h2>
+<h3 class="alert alert-success">Search Result</h3>
 
 <div>
     @foreach (var job in Model)
@@ -17,7 +17,9 @@
 
                 <h3>@Html.ActionLink(@job.JobTitle, "Details", new { JobId = job.Id }, null)</h3>
 
-                <p style="width:75%">@job.JobContent</p>
+                <p style="width:75%">
+                    @Html.Raw(HttpUtility.HtmlDecode(job.JobContent.ToString()))
+                </p>
             </div>
         </div>
     }

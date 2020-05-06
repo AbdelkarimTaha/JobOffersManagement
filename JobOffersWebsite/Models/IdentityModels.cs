@@ -40,5 +40,5 @@ namespace JobOffersWebsite.Models
 
         public System.Data.Entity.DbSet<JobOffersWebsite.Models.ApplyForJob> ApplyForJobs { get; set; }
 
-    }
+     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using JobOffersWebsite.Models;
+using System.Data.Entity;
 
 namespace WebApplication1.Controllers
 {
@@ -157,7 +158,7 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.UserType = new SelectList(db.Roles.Where(n => !n.Name.Contains("Administrators")).ToList()
                                                   , "Name", "Name");
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserType = model.UserType };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserType = model.UserType };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -179,6 +180,45 @@ namespace WebApplication1.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        public ActionResult EditProfile()
+        {
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == UserId).SingleOrDefault();
+
+            EditProfileViewModel profile = new EditProfileViewModel();
+            profile.UserName = user.UserName;
+            profile.Email = user.Email;
+
+            return View(profile);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel profile)
+        {
+            var UserId = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(u => u.Id == UserId).SingleOrDefault();
+
+            if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+                ViewBag.Message = "Current Password is Invalid.";
+
+            else
+            {
+                var NewPasswordHash = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+
+                CurrentUser.UserName = profile.UserName;
+                CurrentUser.Email = profile.Email;
+                CurrentUser.PasswordHash = NewPasswordHash;
+
+                db.Entry(CurrentUser).State = EntityState.Modified;
+                db.SaveChanges();
+
+                ViewBag.Message = "Saved.";
+            }
+
+            return View(profile);
+        }
+
 
         //
         // GET: /Account/ConfirmEmail

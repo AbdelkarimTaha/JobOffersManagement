@@ -1,12 +1,27 @@
 ﻿@model JobOffersWebsite.Models.Job
+@using Microsoft.AspNet.Identity
+@using JobOffersWebsite.Models
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="row">
-  
+@{
+    var db = new ApplicationDbContext();
+    var UserId = User.Identity.GetUserId();
+
+    var check = db.ApplyForJobs.Where(a => a.UserId == UserId && a.JobId == Model.Id).ToList();
+
+    if (check.Count > 0)
+    {
+        <div class="row alert alert-success">
+            <span style="font-size:large"> You have <b>successfully applied</b> to this Job!</span>
+        </div>
+    }
+}
+
+<div class="row thumbnail" style="padding:1px 15px">
     <div class="col-md-6">
         <h2>@Model.JobTitle</h2>
     </div>
@@ -14,18 +29,14 @@
     <div class="col-md-6">
         <img src="~/Images/@Model.JobImage" style="float:right; width:100px;height:100px" />
     </div>
+
+    @if (check.Count == 0)
+    {
+        @Html.ActionLink("Apply for job", "Apply", new { id = Model.Id }, new { @style = "padding:10px 50px", @class = "btn btn-primary" })
+    }
 </div>
 
-
-<p>
-    @Html.ActionLink("Apply for job", "Apply", new { id = Model.Id }, new { @class = "btn btn-primary" }) |
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-    <hr />
-</p>    
-
-
-<div>
-    <h3>About the Job</h3>
-    <p>@Model.JobContent</p>
-
+<div class="row thumbnail" style="padding:1px 15px">
+    <h2>Job Requirements</h2>
+    @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(m => m.JobContent).ToString()))
 </div>
